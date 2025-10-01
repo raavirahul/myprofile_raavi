@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* —— Light theme tokens —— */
+:root{
+  --bg: #f7f9fc;      /* soft light background */
+  --fg: #0f172a;      /* slate-900 text */
+  --muted: #475569;   /* slate-600 for secondary text */
+  --acc: #2563eb;     /* primary accent (blue-600) */
+  --acc-ink: #ffffff; /* readable text on accent */
+  --card: #ffffff;    /* card background */
+  --ring: 0 0% 9%;    /* focus ring color (HSL, dark text) */
+}
+
+html, body{
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Components */
+.card{
+  @apply rounded-2xl border bg-white shadow-md;
+  border-color: rgba(0,0,0,0.08);
+}
+
+.btn{ @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium transition; }
+.btn-primary{
+  background: var(--acc);
+  color: var(--acc-ink);
+}
+.btn-primary:hover{ filter: brightness(0.96); }
+.btn-ghost{
+  @apply bg-white;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.btn-ghost:hover{ background: #f1f5f9; }
+
+/* Subtle focus ring */
+:where(a, button, input, textarea, select):focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+/* Links */
+a{ color: var(--acc); }
+a:hover{ text-decoration: underline; }

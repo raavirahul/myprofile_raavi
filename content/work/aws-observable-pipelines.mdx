@@ -1,0 +1,11 @@
+# Cutting ETL failures by 63% with observability-first pipelines
+
+**Problem.** Orgs ship fast, then drown in retries. We needed consistent contracts & line-of-sight.
+
+**Approach.** Contracts (pydantic), data tests (dbt), idempotent tasks, DLQs, alerting, cost guards.
+
+**Architecture.** [diagram]
+
+**Outcome.** 63% fewer failures in 8 weeks; rebuild under 4h; S3 cost −18% via compaction + lifecycle.
+
+**Links.** [GitHub](#) · [Deck](#)
