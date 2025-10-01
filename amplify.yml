@@ -1,7 +1,6 @@
 version: 1
 applications:
-  - appRoot: .
-    frontend:
+  - frontend:
       phases:
         preBuild:
           commands:
@@ -17,6 +16,4 @@ applications:
       cache:
         paths:
           - node_modules/**/*
-    environment:
-      variables:
-        NEXT_TELEMETRY_DISABLED: '1'
+    appRoot: /
