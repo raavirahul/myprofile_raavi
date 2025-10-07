@@ -9,14 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.902.0",
+    "@aws-sdk/lib-dynamodb": "^3.902.0",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^15.5.4",
+    "@tailwindcss/typography": "^0.5.19",
     "framer-motion": "11.0.0",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.446.0",
     "next": "14.2.6",
+    "next-mdx-remote": "^5.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "rehype-pretty-code": "^0.14.1",
     "sharp": "^0.33.3"
   },
   "devDependencies": {

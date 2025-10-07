@@ -1,0 +1,57 @@
+---
+title: "AWS Data in Real Life"
+description: "Building a real-world data lakehouse architecture on AWS using S3, Glue, Athena, EMR, Redshift, and QuickSight."
+date: "2025-10-07"
+tags: ["AWS", "Lakehouse", "ETL"]
+---
+
+import Figure from "@/components/mdx/Figure"
+
+Modern organizations generate data at massive scale — IoT sensors, ERP systems, CRM tools, and cloud applications.  
+To transform this chaos into insights, **data engineers** rely on cloud-native pipelines.
+
+---
+
+## 🏗️ Architecture Overview
+
+<Figure
+  src="/blog/aws-data-in-real-life/hero.jpeg"
+  alt="Lakehouse overview"
+  width={1600}
+  height={900}
+  caption="Raw → Bronze → Silver → Gold"
+/>
+
+The architecture starts from **S3**, where raw data lands.  
+Glue jobs perform ETL to clean and prepare it, storing it back into structured “Silver” and “Gold” layers.
+
+These layers feed analytics through **Athena** and **QuickSight**, while heavy transformations or training workloads use **EMR** or **SageMaker**.
+
+---
+
+## ⚙️ Data Flow Steps
+
+1. **Ingestion** – Stream or batch data into S3 using Kinesis or Firehose.  
+2. **Transformation** – Process with Glue jobs written in PySpark.  
+3. **Querying** – Query curated data via Athena with SQL.  
+4. **Analytics** – Build dashboards in QuickSight for stakeholders.
+
+---
+
+## 🔍 Example Glue Job
+
+```python
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from awsglue.context import GlueContext
+from pyspark.context import SparkContext
+
+args = getResolvedOptions(sys.argv, ["JOB_NAME"])
+glueContext = GlueContext(SparkContext.getOrCreate())
+
+df = glueContext.create_dynamic_frame.from_catalog(database="bronze", table_name="sales_raw")
+df_clean = DropFields.apply(frame=df, paths=["_corrupt_record"])
+glueContext.write_dynamic_frame.from_options(
+    frame=df_clean, connection_type="s3", connection_options={"path": "s3://my-lakehouse/silver/sales"}, format="parquet"
+)
