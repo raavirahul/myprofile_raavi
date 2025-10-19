@@ -75,8 +75,7 @@ export default function BlogCommentForm({ slug }: { slug: string }) {
       {error && <p className="mt-3 text-rose-600">❌ {error}</p>}
 
       <p className="mt-3 text-xs text-slate-500">
-        Note: comments are kept locally in your browser for display.  
-        For persistent storage, connect the API to a DB (Supabase/Firebase).
+        Note: comments are kept locally in your browser for display.
       </p>
     </form>
   );
